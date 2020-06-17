@@ -848,6 +848,7 @@ paths:
           description: E_FORBIDDEN
         '404':
           description: E_NOT_FOUND_CHANNEL | E_NOT_FOUND_USER
+
   '/api/v1/users/{user_uuid}/channels':
     get:
       tags:
@@ -1018,6 +1019,7 @@ paths:
           description: E_FORBIDDEN | E_INVALID_APPLICATION
         '404':
           description: E_NOT_FOUND_CHANNEL
+
   '/api/v1/channels/{channel_uuid}/customers/{customer_uuid}':
     get:
       tags:
@@ -1168,6 +1170,7 @@ paths:
           description: E_FORBIDDEN | E_INVALID_APPLICATION
         '404':
           description: E_NOT_FOUND_CHANNEL
+
   '/api/v1/channels/{channel_uuid}/billing_models/{model_uuid}':
     get:
       tags:
@@ -1752,7 +1755,7 @@ paths:
         - admins
         - managers
       summary: create channel collection child
-      operationId: create.channel.collection.collection
+      operationId: create.channel.collection.child
       description: |
         Create a collection on an available channel collection.
       security:
@@ -3702,6 +3705,7 @@ paths:
           description: E_FORBIDDEN
         '404':
           description: E_NOT_FOUND_CHANNEL
+
   '/api/v1/channels/{channel_uuid}/feeds/{feed_uuid}':
     get:
       tags:
@@ -3964,9 +3968,6 @@ paths:
           description: E_FORBIDDEN | E_INVALID_APPLICATION
         '404':
           description: E_NOT_FOUND_CHANNEL | E_NOT_FOUND_CHANNEL_FEED | E_NOT_FOUND_CHANNEL_FEED_ITEM
-
-
-
 
 
   # Channel Country Endpoints
@@ -4363,6 +4364,7 @@ paths:
           description: E_FORBIDDEN
         '404':
           description: E_NOT_FOUND_CHANNEL
+
   '/api/v1/channels/{channel_uuid}/public/countries/{country_uuid}':
     get:
       tags:
@@ -4568,6 +4570,13 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        parent_uuid:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        hierarchy_level:
+          type: integer
+          example: 1
         handle:
           type: string
           example: my-channel-handle
@@ -4598,7 +4607,7 @@ components:
       properties:
         event_type:
           type: string
-          example: channel.created
+          example: channel.{channel_uuid}.created
         object:
           type: string
           example: Channel
@@ -4613,7 +4622,7 @@ components:
       properties:
         event_type:
           type: string
-          example: channel.updated
+          example: channel.{channel_uuid}.updated
         object:
           type: string
           example: Channel
