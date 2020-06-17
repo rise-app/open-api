@@ -437,6 +437,7 @@ paths:
           description: E_FORBIDDEN | E_INVALID_APPLICATION
         '404':
           description: E_NOT_FOUND_CHANNEL
+
   '/api/v1/channels/{channel_uuid}/auth/local':
     post:
       tags:
@@ -477,6 +478,7 @@ paths:
           description: E_FORBIDDEN | E_INVALID_APPLICATION
         '404':
           description: E_NOT_FOUND_CHANNEL
+
   '/api/v1/channels/{channel_uuid}/auth/local/recover':
     post:
       tags:
